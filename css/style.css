@@ -21,6 +21,7 @@
     font-weight: 600;
 }
 .navbar-brand img{
+    width: 100%;
     height: 50px;
     padding-left: 20px;
     padding-right: 20px;
@@ -40,7 +41,8 @@
 }
 .img-fluid{
     padding-top: 20px;
-    width: auto;
+    /* width: 1000px; */
+    /* height: 1000px; */
 }
 .banner-text h1{
     font-family: 'Montserrat', sans-serif;
@@ -78,7 +80,8 @@
 }
 .food-img{
     width: 100%;
-    margin-top: 20px;
+    height: auto;
+    margin-top: 200px;
     margin-bottom: 20px;
     padding: 10px 0;
 }
@@ -90,12 +93,14 @@
     padding: 25px auto;
 }
 .rating img{
+
     padding-top: 20px;
     padding-bottom: 20px;
-    width: 50%;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
 }
-.rating h3{
+.rating h4{
     padding-top: 20px;
 }
 .rating p{
@@ -107,6 +112,14 @@
 .slide h5{
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
+}
+.team-img{
+    margin: auto;
+}
+.content-slide{
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 50%;
 }
 #contact{
     background-color: #4D455D;
@@ -122,4 +135,7 @@
 }
 .contact-us p{
     color: #F5E9CF!important;
+}
+.wave-img-2{
+    width: 100%;
 }
