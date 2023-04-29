@@ -34,8 +34,6 @@
 }
 .img-fluid{
     padding-top: 20px;
-    /* width: 1000px; */
-    /* height: 1000px; */
 }
 .banner-text h1{
     font-family: 'Montserrat', sans-serif;
@@ -50,7 +48,6 @@
 
 .bottom-img{
     padding-top: 20px;
-    /* width: 100%; */
     margin: 0;
 }
 
@@ -76,7 +73,6 @@
     height: auto;
     margin-top: 30px;
     margin-bottom: 40px;
-    /* padding: 10px 0; */
 }
 #review{
     padding: 10px 0;
@@ -89,8 +85,6 @@
 
     padding-top: 20px;
     padding-bottom: 20px;
-    /* width: 300px; */
-    /* height: 250px; */
     border-radius: 50%;
 }
 .rating h4{
@@ -102,7 +96,10 @@
     width: 200px;
     padding-top: 10px;
 }
-.slide h5{
+#team{
+    padding-bottom: 50px;
+}
+.slide h3{
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
 }
@@ -112,7 +109,7 @@
 .content-slide{
     margin: auto;
     background-color: rgba(0, 0, 0, 0.5);
-    width: 50%;
+    width: 608px;
 }
 #contact{
     background-color: #4D455D;
@@ -134,7 +131,4 @@
 .button-icon{
     width: 150px;
     height: 150px;
-}
-.wave-img-2{
-    /* width: 100%; */
 }
