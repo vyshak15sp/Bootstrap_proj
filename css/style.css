@@ -133,3 +133,14 @@
     width: 150px;
     height: 150px;
 }
+
+
+.scrolled-down{
+    transform:translateY(-100%); transition: all 0.3s ease-in-out;
+  }
+  .scrolled-up{
+    transform:translateY(0); transition: all 0.3s ease-in-out;
+  }
+  .autohide{
+    padding-top: 0;
+  }
