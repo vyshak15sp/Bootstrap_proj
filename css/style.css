@@ -98,7 +98,7 @@
     padding-top: 10px;
 }
 #team{
-    padding-bottom: 50px;
+    padding: 30px 0 50px 0;
 }
 .slide h3{
     font-family: 'Montserrat', sans-serif;
@@ -113,12 +113,12 @@
     width: 608px;
 }
 #contact{
+    padding: 10px 0;
     background-color: #4D455D;
 }
 .base-title{
     font-family: 'Montserrat', sans-serif;
     color: #fff;
-    padding-top: 20px;
     margin-top: 30px;
     margin-bottom: 30px;
     text-align: center;
@@ -140,7 +140,4 @@
   }
   .scrolled-up{
     transform:translateY(0); transition: all 0.3s ease-in-out;
-  }
-  .autohide{
-    padding-top: 0;
   }
