@@ -141,3 +141,24 @@
   .scrolled-up{
     transform:translateY(0); transition: all 0.3s ease-in-out;
   }
+
+  /* Modal */
+
+  .modal-body{
+    text-align: center;
+  }
+  .modal-body input{
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+  }
+  .modal-body textarea{
+    display: block;
+    width: 90%;
+    margin: 10px auto;
+    padding: 10px;
+  }
+  .g-recaptcha{
+    margin: 10px 40px 20px;
+  }
