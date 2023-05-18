@@ -3,6 +3,10 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    max-width: 100%;
+    overflow-x: hidden;
+}
 #nav-bar{
     position: sticky;
     top: 0;
@@ -162,3 +166,26 @@
   .g-recaptcha{
     margin: 10px 40px 20px;
   }
+  
+  .modal input.form-control.is-valid {
+    border-color: green;
+  }
+  
+  .modal input.form-control.is-invalid {
+    border-color: red;
+  }
+  .invalid {
+    border-color: red;
+  }
+  
+  .valid {
+    border-color: green;
+  }
+  /* Override focus styles for form input fields */
+.modal input.form-control:focus {
+    outline: none;
+    box-shadow: none;
+    /* border-color: blue; */
+  }
+  
+  
