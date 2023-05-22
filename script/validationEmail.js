@@ -1,17 +1,27 @@
-emailjs.init('5rcemQjiw5ewrra4d');
+emailjs.init("5rcemQjiw5ewrra4d");
 
-const form = document.getElementById('contact-form'); // Replace 'myForm' with your form ID
-const successMessageElement = document.getElementById('successMessage');
+const form = document.getElementById("contact-form");
+const successMessage = document.getElementById("thankYouMessage");
+const resetFormBtn = document.getElementById("resetFormBtn");
+const closeButton = document.getElementById("closeButton");
 
+// Add event listeners for real-time validation
+const nameField = document.getElementById("name");
+const emailField = document.getElementById("email");
+const messageField = document.getElementById("message");
 
-form.addEventListener('submit', function(event) {
+nameField.addEventListener("input", validateName);
+emailField.addEventListener("input", validateEmail);
+messageField.addEventListener("input", validateMessage);
+
+form.addEventListener("submit", function (event) {
   event.preventDefault(); // Prevent form submission
 
   const recaptchaResponse = grecaptcha.getResponse(); // Get reCAPTCHA response
 
   if (!recaptchaResponse) {
     // Handle reCAPTCHA not completed error
-    alert('Please complete the reCAPTCHA.');
+    alert("Please complete the reCAPTCHA.");
     return;
   }
 
@@ -20,47 +30,57 @@ form.addEventListener('submit', function(event) {
     sendFormData();
   }
 });
-function validateName(event){
-  const name = document.getElementById('name');
 
-  if (name.value.trim() === '') {
-    name.classList.remove('valid');
-    name.classList.add('invalid');
-    isValid = false;
-  } else {
-    name.classList.remove('invalid');
-    name.classList.add('valid');
-  }
+closeButton.addEventListener("click", function () {
+  form.reset();
+  grecaptcha.reset();
+  resetFieldValidation();
+});
 
-}
 function validateForm() {
-  const email = document.getElementById('email');
-  const message = document.getElementById('message');
+  // Perform final validation before form submission
+  validateName();
+  validateEmail();
+  validateMessage();
 
-  let isValid = true;
-
-  // Validate name field
-  
-  // Validate email field
-  if (email.value.trim() === '' || !isValidEmail(email.value.trim())) {
-    email.classList.remove('valid');
-    email.classList.add('invalid');
-    isValid = false;
-  } else {
-    email.classList.remove('invalid');
-    email.classList.add('valid');
-  }
-
-  // Validate message field
-  if (message.value.trim() === '') {
-    message.classList.remove('valid');
-    message.classList.add('invalid');
-    isValid = false;
-  } else {
-    message.classList.remove('invalid');
-    message.classList.add('valid');
-  }
+  const isValid = form.querySelectorAll(".invalid").length === 0;
   return isValid;
+}
+
+function validateName() {
+  const name = nameField.value.trim();
+
+  if (name === "") {
+    nameField.classList.remove("valid");
+    nameField.classList.add("invalid");
+  } else {
+    nameField.classList.remove("invalid");
+    nameField.classList.add("valid");
+  }
+}
+
+function validateEmail() {
+  const email = emailField.value.trim();
+
+  if (email === "" || !isValidEmail(email)) {
+    emailField.classList.remove("valid");
+    emailField.classList.add("invalid");
+  } else {
+    emailField.classList.remove("invalid");
+    emailField.classList.add("valid");
+  }
+}
+
+function validateMessage() {
+  const message = messageField.value.trim();
+
+  if (message === "") {
+    messageField.classList.remove("valid");
+    messageField.classList.add("invalid");
+  } else {
+    messageField.classList.remove("invalid");
+    messageField.classList.add("valid");
+  }
 }
 
 function isValidEmail(email) {
@@ -71,40 +91,53 @@ function isValidEmail(email) {
 
 function sendFormData() {
   // Capture form data
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const message = document.getElementById('message').value;
+  const name = nameField.value;
+  const email = emailField.value;
+  const message = messageField.value;
 
   // Create template parameters
   const templateParams = {
     from_name: name,
     from_email: email,
-    message_html: message
+    message_html: message,
   };
 
+  function SentMessage() {
+    form.style.display = "none";
+    thankYouMessage.style.display = "block";
+  }
+
+  resetFormBtn.addEventListener("click", function () {
+    form.style.display = "block";
+    thankYouMessage.style.display = "none";
+  });
+
   // Send form data using EmailJS or any other desired method
-  emailjs.send('service_y21mze4', 'template_50bdudl', templateParams)
-    .then(function(response) {
-      console.log('Email sent successfully:', response);
-      // Show success message in the contact us modal
-      successMessageElement.innerText = 'Your message has been sent!';
-      successMessageElement.style.display = 'block';
-      // $('#successModal').modal('show');
-      // alert("The message has been sucessfully sent.")
-
-      // Reset the form
+  emailjs
+    .send("service_y21mze4", "template_50bdudl", templateParams)
+    .then(function (response) {
+      console.log("Email sent successfully:", response.status, response.text);
+      if (response.status === 200) {
+        SentMessage();
         form.reset();
-      
-      // Clear the reCAPTCHA response
-      grecaptcha.reset();
-      
-      // Handle success message or any further actions
-    })
-    .catch(function(error) {
-      console.log('Email sending failed:', error);
-      // $('#errorModal').modal('show');
-      alert("oops!.")
+        resetFieldValidation();
 
-      // Handle error message or any further actions
+        // Clear the reCAPTCHA response
+        grecaptcha.reset();
+      } else {
+        alert("Oops! Something went wrong. Please try again later.");
+      }
+    })
+    .catch(function (error) {
+      console.log("Email sending failed:", error);
+      alert("Oops! Something went wrong. Please try again later.");
     });
+}
+
+function resetFieldValidation() {
+  const fields = form.querySelectorAll(".form-control");
+  fields.forEach(function (field) {
+    field.classList.remove("invalid");
+    field.classList.remove("valid");
+  });
 }
